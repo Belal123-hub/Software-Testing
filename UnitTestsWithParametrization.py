@@ -1,8 +1,5 @@
 import unittest
-from parameterized import parameterized
-
 from main import Solution
-
 
 class TestUniquePaths(unittest.TestCase):
 
@@ -32,26 +29,47 @@ class TestUniquePaths(unittest.TestCase):
         """
         pass
 
-    @parameterized.expand([
-        ("example_case", 3, 7, 28),
-        ("minimum_grid", 1, 1, 1),
-        ("single_row_grid", 1, 5, 1),
-        ("single_column_grid", 5, 1, 1),
-        ("medium_grid", 10, 10, 48620),
-        ("asymmetric_grid", 5, 10, 715),
-    ])
-    def test_unique_paths(self, name, m, n, expected):
+    def test_example_case(self):
         """
-        Parameterized test for various grid sizes.
+        Test example case provided in the prompt.
         """
-        self.assertEqual(self.solution.uniquePaths(m, n), expected)
+        self.assertEqual(self.solution.uniquePaths(3, 7), 28)
+
+    def test_minimum_grid(self):
+        """
+        Test minimum grid size of 1x1.
+        """
+        self.assertEqual(self.solution.uniquePaths(1, 1), 1)
+
+    def test_single_row_grid(self):
+        """
+        Test grid size with a single row.
+        """
+        self.assertEqual(self.solution.uniquePaths(1, 5), 1)
+
+    def test_single_column_grid(self):
+        """
+        Test grid size with a single column.
+        """
+        self.assertEqual(self.solution.uniquePaths(5, 1), 1)
+
+    def test_medium_grid(self):
+        """
+        Test medium grid size of 10x10.
+        """
+        self.assertEqual(self.solution.uniquePaths(10, 10), 48620)
+
+    def test_asymmetric_grid(self):
+        """
+        Test asymmetric grid size of 5x10.
+        """
+        self.assertEqual(self.solution.uniquePaths(5, 10), 715)
 
     def test_large_grid(self):
         """
         Test a larger grid to check for performance issues and correct calculation.
         """
-        self.assertEqual(self.solution.uniquePaths(100, 100),
-                         22750883079422934966181954039568885395604168260154104734000)
+        self.assertEqual(self.solution.uniquePaths(100, 100), 22750883079422934966181954039568885395604168260154104734000)
 
     def test_invalid_input(self):
         """
